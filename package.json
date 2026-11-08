@@ -1,0 +1,18 @@
+{
+  "name": "ideamap-sync",
+  "version": "0.1.0",
+  "description": "Import your Obsidian vault's note names, tags, and links into ideamap",
+  "main": "main.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && esbuild main.ts --bundle --external:obsidian --external:electron --format=cjs --target=es2018 --outfile=main.js",
+    "release": "npm run build && rm -rf release && mkdir release && cp main.js manifest.json release/"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "obsidian": "1.14.4",
+    "typescript": "^5.0.0"
+  }
+}
