@@ -9,6 +9,7 @@ Import your Obsidian vault's structure into your [ideamap](https://ideamap-nine.
 3. In Obsidian, open the plugin's settings and paste the token.
 4. Select the ribbon icon, or run **ideamap sync: Sync vault to ideamap** from the command palette.
 5. On ideamap, **Settings** now shows the last sync time and how many notes and links were imported.
+6. From ideamap you can also press **Sync now** (Import, Settings or Your vault): it opens `obsidian://ideamap-sync`, and the plugin syncs. Clicking a note in ideamap's vault graph opens it here (`obsidian://open`). Needs 0.1.1 or later.
 
 Each sync replaces the previous one.
 
@@ -23,6 +24,7 @@ The plugin connects to one remote service: the ideamap server (`https://ideamap-
 - Each Markdown note's path and name
 - Its tags, its link targets, and how many embeds it has
 - The links between your notes
+- The vault's name (since 0.1.1), so ideamap can link back into this vault
 
 **Never sent:** the contents of your notes, your attachments, or anything outside your vault.
 
