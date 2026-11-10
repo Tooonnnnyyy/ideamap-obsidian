@@ -31,6 +31,8 @@ export default class IdeamapSyncPlugin extends Plugin {
     await this.loadSettings();
     this.addRibbonIcon("refresh-cw", "Sync vault to ideamap", () => this.sync());
     this.addCommand({ id: "sync", name: "Sync vault to ideamap", callback: () => this.sync() });
+    // ideamap's "Sync now" button opens obsidian://ideamap-sync (?vault=<name> picks the vault).
+    this.registerObsidianProtocolHandler("ideamap-sync", () => this.sync());
     this.addSettingTab(new IdeamapSettingTab(this.app, this));
   }
 
@@ -87,7 +89,8 @@ export default class IdeamapSyncPlugin extends Plugin {
         url: `${apiUrl}/api/obsidian/sync`,
         method: "POST",
         headers: { "Content-Type": "application/json", "X-API-Token": token },
-        body: JSON.stringify({ notes, links }),
+        // The vault's name lets ideamap link back here (obsidian://open?vault=…); it is not note content.
+        body: JSON.stringify({ notes, links, vault: this.app.vault.getName() }),
         throw: false,
       });
       if (res.status === 200) {
