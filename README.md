@@ -4,7 +4,7 @@ Import your Obsidian vault's structure into your [ideamap](https://ideamap-nine.
 
 ## How to use
 
-1. Install **ideamap sync** from Community plugins in Obsidian and enable it. Until the listing is approved, install it with [BRAT](https://github.com/TfTHacker/obsidian42-brat) (add `Tooonnnnyyy/ideamap-obsidian`), or copy `main.js` and `manifest.json` from the [latest release](https://github.com/Tooonnnnyyy/ideamap-obsidian/releases/latest) into `.obsidian/plugins/ideamap-sync/`.
+1. In Obsidian, open **Settings → Community plugins → Browse**, search for **ideamap sync** ([listing](https://community.obsidian.md/plugins/ideamap-sync)), install it and enable it. If it doesn't show up yet, install it with [BRAT](https://github.com/TfTHacker/obsidian42-brat) (add `Tooonnnnyyy/ideamap-obsidian`), or copy `main.js` and `manifest.json` from the [latest release](https://github.com/Tooonnnnyyy/ideamap-obsidian/releases/latest) into `.obsidian/plugins/ideamap-sync/`.
 2. On [ideamap](https://ideamap-nine.vercel.app), sign in, open **Settings**, and generate an API token. It is only shown once.
 3. In Obsidian, open the plugin's settings and paste the token.
 4. Select the ribbon icon, or run **ideamap sync: Sync vault to ideamap** from the command palette.
