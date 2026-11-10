@@ -1,6 +1,6 @@
 {
   "name": "ideamap-sync",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Import your Obsidian vault's note names, tags, and links into ideamap",
   "main": "main.js",
   "license": "MIT",

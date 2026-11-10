@@ -41,6 +41,12 @@ npm run build     # type-checks and produces main.js
 npm run release   # also copies main.js and manifest.json into release/
 ```
 
+Releases are built by GitHub Actions: push a tag that matches `manifest.json` (for example `0.1.4`) and the workflow builds, attests and publishes `main.js` and `manifest.json`. Verify a download with `gh attestation verify main.js -R Tooonnnnyyy/ideamap-obsidian`.
+
+```bash
+git tag 0.1.4 && git push origin 0.1.4
+```
+
 To try a local build, copy `main.js` and `manifest.json` to `.obsidian/plugins/ideamap-sync/` in a test vault.
 
 ## License
