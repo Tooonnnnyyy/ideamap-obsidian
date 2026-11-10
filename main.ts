@@ -29,11 +29,11 @@ export default class IdeamapSyncPlugin extends Plugin {
 
   async onload() {
     await this.loadSettings();
-    this.addRibbonIcon("refresh-cw", "Sync vault to ideamap", () => this.sync());
-    this.addCommand({ id: "sync", name: "Sync vault to ideamap", callback: () => this.sync() });
+    this.addRibbonIcon("refresh-cw", "Sync vault to ideamap", () => void this.sync());
+    this.addCommand({ id: "sync", name: "Sync vault to ideamap", callback: () => void this.sync() });
     // ideamap's "Sync now" button opens obsidian://ideamap-sync (?vault=<name> picks the vault).
     // Any web page can open that link, so it never syncs on its own: the person confirms first.
-    this.registerObsidianProtocolHandler("ideamap-sync", () => new ConfirmSyncModal(this.app, () => this.sync()).open());
+    this.registerObsidianProtocolHandler("ideamap-sync", () => new ConfirmSyncModal(this.app, () => void this.sync()).open());
     this.addSettingTab(new IdeamapSettingTab(this.app, this));
   }
 

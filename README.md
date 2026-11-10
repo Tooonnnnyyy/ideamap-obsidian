@@ -4,7 +4,7 @@ Import your Obsidian vault's structure into your [ideamap](https://ideamap-nine.
 
 ## How to use
 
-1. Install **ideamap sync** from Community plugins in Obsidian and enable it.
+1. Install **ideamap sync** from Community plugins in Obsidian and enable it. Until the listing is approved, install it with [BRAT](https://github.com/TfTHacker/obsidian42-brat) (add `Tooonnnnyyy/ideamap-obsidian`), or copy `main.js` and `manifest.json` from the [latest release](https://github.com/Tooonnnnyyy/ideamap-obsidian/releases/latest) into `.obsidian/plugins/ideamap-sync/`.
 2. On [ideamap](https://ideamap-nine.vercel.app), sign in, open **Settings**, and generate an API token. It is only shown once.
 3. In Obsidian, open the plugin's settings and paste the token.
 4. Select the ribbon icon, or run **ideamap sync: Sync vault to ideamap** from the command palette.
@@ -30,12 +30,13 @@ The plugin connects to one remote service: the ideamap server (`https://ideamap-
 
 Note names, folder names, and tags can be sensitive on their own, so check them before you sync. The imported data is stored on your ideamap account and is not shown to other people.
 
-The plugin has no ads, no telemetry, and no payments. Your API token is stored in this vault's plugin data (`.obsidian/plugins/ideamap-sync/data.json`), so keep that file out of any public backup of your vault. You can revoke the token at any time on your ideamap **Settings** page.
+The plugin has no ads, no telemetry, and no payments. Your API token is stored in this vault's plugin data (`.obsidian/plugins/ideamap-sync/data.json`), so keep that file out of any public backup of your vault. You can revoke the token at any time on your ideamap **Settings** page. How ideamap stores and handles this data: [privacy policy](https://ideamap-nine.vercel.app/privacy).
 
 ## Build from source
 
 ```bash
 npm install
+npm run lint      # Obsidian's own review rules (eslint-plugin-obsidianmd)
 npm run build     # type-checks and produces main.js
 npm run release   # also copies main.js and manifest.json into release/
 ```
