@@ -1,7 +1,7 @@
 {
   "id": "ideamap-sync",
   "name": "ideamap sync",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "minAppVersion": "1.0.0",
   "description": "Import your vault's note names, tags, and links into your ideamap account. Note contents stay on your device.",
   "author": "Tony Bi",
