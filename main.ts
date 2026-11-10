@@ -1,4 +1,4 @@
-import { App, Notice, Plugin, PluginSettingTab, Setting, getAllTags, requestUrl } from "obsidian";
+import { App, Modal, Notice, Plugin, PluginSettingTab, Setting, getAllTags, requestUrl } from "obsidian";
 
 interface IdeamapSettings {
   apiUrl: string;
@@ -32,7 +32,8 @@ export default class IdeamapSyncPlugin extends Plugin {
     this.addRibbonIcon("refresh-cw", "Sync vault to ideamap", () => this.sync());
     this.addCommand({ id: "sync", name: "Sync vault to ideamap", callback: () => this.sync() });
     // ideamap's "Sync now" button opens obsidian://ideamap-sync (?vault=<name> picks the vault).
-    this.registerObsidianProtocolHandler("ideamap-sync", () => this.sync());
+    // Any web page can open that link, so it never syncs on its own: the person confirms first.
+    this.registerObsidianProtocolHandler("ideamap-sync", () => new ConfirmSyncModal(this.app, () => this.sync()).open());
     this.addSettingTab(new IdeamapSettingTab(this.app, this));
   }
 
@@ -113,6 +114,32 @@ export default class IdeamapSyncPlugin extends Plugin {
 
   async saveSettings() {
     await this.saveData(this.settings);
+  }
+}
+
+class ConfirmSyncModal extends Modal {
+  constructor(app: App, private onConfirm: () => void) {
+    super(app);
+  }
+
+  onOpen() {
+    this.titleEl.setText("Sync this vault to ideamap?");
+    this.contentEl.createEl("p", { text: "Sends note names, tags and links (never note contents) to your ideamap account." });
+    new Setting(this.contentEl)
+      .addButton((b) => b.setButtonText("Cancel").onClick(() => this.close()))
+      .addButton((b) =>
+        b
+          .setButtonText("Sync now")
+          .setCta()
+          .onClick(() => {
+            this.close();
+            this.onConfirm();
+          }),
+      );
+  }
+
+  onClose() {
+    this.contentEl.empty();
   }
 }
 
